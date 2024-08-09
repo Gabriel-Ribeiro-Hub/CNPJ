@@ -1,89 +1,100 @@
+// Função para consultar o CNPJ quando o botão é clicado
 document.getElementById('consultaBtn').addEventListener('click', async () => {
   const cnpj = document.getElementById('cnpjInput').value;
-  if (!cnpj) {
+
+  if (cnpj === '') {
     alert('Por favor, insira um CNPJ válido.');
     return;
   }
 
   try {
     const response = await fetch(`https://brasilapi.com.br/api/cnpj/v1/${cnpj}`);
-    if (!response.ok) throw new Error('Erro na consulta do CNPJ');
+    if (!response.ok) {
+      throw new Error('Erro na consulta do CNPJ');
+    }
 
     const data = await response.json();
-    displayCompanyInfo(data);
-    openModal();
+    mostrarInformacoesEmpresa(data);
+    abrirModal();
   } catch (error) {
-    console.error(error);
+    console.error('Erro:', error);
     alert('Erro ao consultar o CNPJ. Por favor, tente novamente.');
   }
 });
 
-function displayCompanyInfo(data) {
-  document.getElementById('nome').innerText = data.nome_fantasia;
-  document.getElementById('razaoSocial').innerText = data.razao_social;
-  document.getElementById('dataAbertura').innerText = data.data_inicio_atividade;
-  document.getElementById('situacao').innerText = data.situacao;
-  document.getElementById('atividadePrincipal').innerText = data.cnae_fiscal_descricao;
-  document.getElementById('enderecoCompleto').innerText = `${data.logradouro}, ${data.numero} - ${data.bairro}, ${data.municipio} - ${data.uf}, ${data.cep}`;
-  document.getElementById('telefone').innerText = data.telefone;
-  document.getElementById('email').innerText = data.email;
+// Função para mostrar as informações da empresa
+function mostrarInformacoesEmpresa(data) {
+  document.getElementById('nome').innerText = data.nome_fantasia || 'Não informado';
+  document.getElementById('razaoSocial').innerText = data.razao_social || 'Não informado';
+  document.getElementById('dataAbertura').innerText = data.data_inicio_atividade || 'Não informado';
+  document.getElementById('situacao').innerText = data.situacao || 'Não informado';
+  document.getElementById('atividadePrincipal').innerText = data.cnae_fiscal_descricao || 'Não informado';
+  document.getElementById('enderecoCompleto').innerText = `${data.logradouro || ''}, ${data.numero || ''} - ${data.bairro || ''}, ${data.municipio || ''} - ${data.uf || ''}, ${data.cep || ''}`;
+  document.getElementById('telefone').innerText = data.telefone || 'Não informado';
+  document.getElementById('email').innerText = data.email || 'Não informado';
 
   const sociosContainer = document.getElementById('sociosContainer');
-  sociosContainer.innerHTML = '';
-  data.qsa.forEach(socio => {
-    const socioCard = document.createElement('div');
-    socioCard.className = 'socio-card';
-    socioCard.innerHTML = `
-      <p><strong>Nome:</strong> ${socio.nome}</p>
-      <p><strong>Qualificação:</strong> ${socio.qual}</p>
-    `;
-    sociosContainer.appendChild(socioCard);
-  });
+  sociosContainer.innerHTML = '';  // Limpa o container antes de adicionar os sócios
+
+  if (data.qsa && data.qsa.length > 0) {
+    data.qsa.forEach(socio => {
+      const socioCard = document.createElement('div');
+      socioCard.className = 'socio-card';
+      socioCard.innerHTML = `<p><strong>Nome:</strong> ${socio.nome}</p><p><strong>Qualificação:</strong> ${socio.qual}</p>`;
+      sociosContainer.appendChild(socioCard);
+    });
+  } else {
+    sociosContainer.innerHTML = '<p>Nenhum sócio encontrado.</p>';
+  }
 }
 
-function openModal() {
+// Funções para abrir e fechar o modal
+function abrirModal() {
   document.getElementById('modal').style.display = 'block';
 }
 
-function closeModal() {
+function fecharModal() {
   document.getElementById('modal').style.display = 'none';
 }
 
-document.querySelector('.close').addEventListener('click', closeModal);
+// Fechar o modal ao clicar no "X" ou fora do modal
+document.querySelector('.close').addEventListener('click', fecharModal);
 window.addEventListener('click', (event) => {
-  if (event.target == document.getElementById('modal')) {
-    closeModal();
+  if (event.target === document.getElementById('modal')) {
+    fecharModal();
   }
 });
 
+// Funções para editar e salvar as informações
 document.getElementById('editBtn').addEventListener('click', () => {
-  toggleEdit(true);
+  alternarEdicao(true);
 });
 
 document.getElementById('saveBtn').addEventListener('click', () => {
-  toggleEdit(false);
+  alternarEdicao(false);
 });
 
-function toggleEdit(editable) {
-  const empresaInfo = document.querySelector('.modal-content');
-  const elements = empresaInfo.querySelectorAll('span');
-  
-  elements.forEach(span => {
-    if (editable) {
+function alternarEdicao(editavel) {
+  const informacoesEmpresa = document.querySelector('.modal-content');
+  const spans = informacoesEmpresa.querySelectorAll('span:not(.close)');
+
+  spans.forEach(span => {
+    if (editavel) {
       const input = document.createElement('input');
       input.value = span.innerText;
       input.setAttribute('data-original-span', span.id);
       span.replaceWith(input);
     } else {
-      const span = document.createElement('span');
-      span.innerText = input.value;
-      span.id = input.getAttribute('data-original-span');
-      input.replaceWith(span);
+      const input = informacoesEmpresa.querySelector(`input[data-original-span="${span.id}"]`);
+      if (input) {
+        span.innerText = input.value;
+        input.replaceWith(span);
+      }
     }
   });
 
-  document.getElementById('editBtn').classList.toggle('hidden', editable);
-  document.getElementById('saveBtn').classList.toggle('hidden', !editable);
+  document.getElementById('editBtn').style.display = editavel ? 'none' : 'inline-block';
+  document.getElementById('saveBtn').style.display = editavel ? 'inline-block' : 'none';
 }
 
 

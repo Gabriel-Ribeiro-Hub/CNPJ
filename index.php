@@ -1,4 +1,4 @@
-<?php include("componentes/head.php"); ?>
+<?php include ("componentes/head.php"); ?>
 </head>
 
 <body>
@@ -10,7 +10,7 @@
         </div>
 
         <div class="div-flex">
-            <img src="imagens/icon1.webp" alt="">
+            <img src="imagens/Documents-bro.png" alt="">
             <div class="container">
                 <h1 class="title">Qual CNPJ deseja <br> consultar ?</h1>
                 <input type="text" id="cnpjInput" placeholder="Informe o CNPJ">
@@ -21,14 +21,47 @@
                     <div class="modal-content">
                         <span class="close">&times;</span>
                         <h2 class="title-modal">Informações da Empresa</h2>
-                        <p class="text-one"><strong class="strong-black">Nome:</strong> <span id="nome"></span></p>
-                        <p class="text-one"><strong class="strong-black">Razão Social:</strong> <span id="razaoSocial"></span></p>
-                        <p class="text-one"><strong class="strong-black">Data de Abertura:</strong> <span id="dataAbertura"></span></p>
-                        <p class="text-one"><strong class="strong-black">Situação:</strong> <span id="situacao"></span></p>
-                        <p class="text-one"><strong class="strong-black">Atividade Principal:</strong> <span id="atividadePrincipal"></span></p>
-                        <p class="text-one"><strong class="strong-black">Endereço Completo:</strong> <span id="enderecoCompleto"></span></p>
-                        <p class="text-one"><strong class="strong-black">Telefone:</strong> <span id="telefone"></span></p>
-                        <p class="text-one"><strong class="strong-black">E-mail:</strong> <span id="email"></span></p>
+                        <div class="div-flex2 green2"><img src="imagens/icon/1.png" alt="icon">
+                            <p class="text-one"><strong class="strong-black">Nome:</strong> <span id="nome"></span></p>
+                        </div>
+
+                        <div class="div-flex2"><img src="imagens/icon/2.png" alt="icon">
+                            <p class="text-one"><strong class="strong-black">Razão Social:</strong> <span
+                                    id="razaoSocial"></span></p>
+                        </div>
+
+                        <div class="div-flex2 green2"><img src="imagens/icon/3.png" alt="icon">
+                            <p class="text-one"><strong class="strong-black">Data de Abertura:</strong> <span
+                                    id="dataAbertura"></span></p>
+                        </div>
+
+                        <div class="div-flex2"><img src="imagens/icon/4.png" alt="icon">
+                            <p class="text-one"><strong class="strong-black">Situação:</strong> <span
+                                    id="situacao"></span>
+                            </p>
+                        </div>
+
+                        <div class="div-flex2 green2"><img src="imagens/icon/5.png" alt="icon">
+                            <p class="text-one"><strong class="strong-black">Atividade Principal:</strong> <span
+                                    id="atividadePrincipal"></span></p>
+                        </div>
+
+                        <div class="div-flex2"><img src="imagens/icon/6.png" alt="icon">
+                            <p class="text-one"><strong class="strong-black">Endereço Completo:</strong> <span
+                                    id="enderecoCompleto"></span></p>
+                        </div>
+
+                        <div class="div-flex2 green2"><img src="imagens/icon/7.png" alt="icon">
+                            <p class="text-one"><strong class="strong-black">Telefone:</strong> <span
+                                    id="telefone"></span>
+                            </p>
+                        </div>
+
+
+                        <div class="div-flex2"><img src="imagens/icon/8.png" alt="icon">
+                            <p class="text-one"><strong class="strong-black">E-mail:</strong> <span id="email"></span>
+                            </p>
+                        </div>
 
                         <h3 class="title-h3">Sócios</h3>
                         <div id="sociosContainer"></div>

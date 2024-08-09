@@ -14,11 +14,11 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient(35deg, crimson 25%, #5b0817 85%); 
+  background-image: linear-gradient(35deg, crimson 25%, #5b0817 85%);
 }
 
 .title-modal {
-  color: #394648;
+  color: #FFB997;
   font-size: 28px;
   font-family: "Poppins", sans-serif;
   padding-bottom: 1vw;
@@ -29,7 +29,7 @@ main {
 .title-h3 {
   font-weight: bold;
   font-family: "Poppins", sans-serif;
-  color: #394648;
+  color: #FFB997;
   font-size: 23px;
   padding: 10px;
 }
@@ -45,13 +45,12 @@ main {
 }
 
 input {
-  width: calc(100% - 22px);
+  width: 100%;
   padding: 10px;
-  margin: 10px 0;
   border-radius: 20px;
   border: none;
-  background-color: #C8E087;
-  color: #394648;
+  background-color: #424874;
+  color: #FFB997;
   font-family: "Poppins", sans-serif;
   transition: 300ms linear all;
 }
@@ -60,6 +59,25 @@ button {
   padding: 10px 20px;
   margin: 10px 5px;
   transition: 300ms linear all;
+  background-color: #ffb997;
+  color: #252633;
+  border: none;
+  border-radius: 7px;
+  font-size: 18px;
+}
+
+.modal-content img {
+  width: 30px;
+  object-fit: contain;
+}
+
+.div-flex2 {
+  display: flex;
+  margin-bottom: 0.7vw;
+  padding-left: 7px;
+  border-bottom: 1px solid #ffb997;
+  width: max-content;
+
 }
 
 .hidden {
@@ -76,15 +94,14 @@ button {
 }
 
 .socio-card {
-  background-color: #394648;
-  color: #d2d9c0;
+  background-color: #FFB997;
+  color: #1c1e33;
   padding: 10px;
   margin: 5px;
   border-radius: 4px;
   width: 100%;
   max-width: 200px;
-  box-shadow: inset 0 0 20px #00000096;
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif !important;
 }
 
 .socio-card input {
@@ -97,8 +114,8 @@ button {
   width: calc(100% - 22px);
   border-radius: 20px;
   border: none;
-  background-color: #C8E087;
-  color: #394648;
+  background-color: #424874;
+  color: #FFB997;
   font-weight: bolder;
   font-family: "Poppins", sans-serif;
 }
@@ -137,8 +154,8 @@ button:hover {
 }
 
 .button-one:hover {
-  background-color: #394648;
-  color: #C8E087;
+  background-color: #FFB997;
+  color: #424874;
   cursor: pointer;
 }
 
@@ -153,29 +170,31 @@ button:hover {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
   padding-top: 10px;
 }
 
 p.text-one {
-  padding: 5px;
+  padding: 5px 0px 0px 15px;
   font-family: "Poppins", sans-serif;
   font-weight: lighter;
+  line-height: 24px;
 }
 
 strong.strong-black {
   font-weight: bold;
   font-family: "Poppins", sans-serif;
-  color: #394648;
+  color: #FFB997;
+  padding-left: 0.1vw;
 }
 
 .modal-content {
-  background-color: #C8E087;
-  margin: 5% auto;
+  background-color: #424874;
+  margin: 1% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 95%;
   border-radius: 20px;
 }
 
@@ -217,11 +236,78 @@ strong.strong-black {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Hidden class */
 .hidden {
   display: none;
+}
+
+span#nome {
+  width: 100%;
+  display: block;
+  color: white;
+  font-size: 13px;
+}
+
+span#razaoSocial {
+  width: 100%;
+  display: block;
+  color: white;
+  font-size: 13px;
+}
+
+span#dataAbertura {
+  width: 100%;
+  display: block;
+  color: white;
+  font-size: 13px;
+}
+
+span#situacao {
+  width: 100%;
+  display: block;
+  color: white;
+  font-size: 13px;
+}
+
+span#atividadePrincipal {
+  width: 100%;
+  display: block;
+  color: white;
+  font-size: 13px;
+}
+
+span#enderecoCompleto {
+  width: 100%;
+  display: block;
+  color: white;
+  font-size: 13px;
+}
+
+span#telefone {
+  width: 100%;
+  display: block;
+  color: white;
+  font-size: 13px;
+}
+
+span#email {
+  width: 100%;
+  display: block;
+  color: white;
+  font-size: 13px;
+}
+
+@media only screen and (max-width: 980px) {
+  .div-flex2 {
+    width: auto;
+  }
 }
