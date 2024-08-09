@@ -21,4 +21,4 @@ Este projeto foi desenvolvido para consultar informações detalhadas de empresa
 ### Passos para Rodar Localmente
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/Gabriel-Ribeiro-Hub/CNPJ
+   git clone https://gabriel-ribeiro-hub.github.io/CNPJ/
